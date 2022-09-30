@@ -1,4 +1,4 @@
-name: Bookstore CI
+name: Book Store CI/CD
 
 on:
   push:
