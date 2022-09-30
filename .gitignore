@@ -131,3 +131,6 @@ dmypy.json
 
 ## Virtual ENV
 __bookstore-django__
+
+## Pycharm
+.idea
