@@ -17,4 +17,4 @@ jobs:
     - name: Build the Docker image and container
       run: docker compose up -d --build
     - name: Run test
-      run: docker-compose exec web python manage.py test
+      run: docker compose exec web python manage.py test
