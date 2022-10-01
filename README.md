@@ -5,14 +5,11 @@
 * Project
 
 ```bash
-$ cd onedrive\desktop 
-$ mkdir ch4-bookstore 
-$ cd ch4-bookstore 
 $ python -m venv .venv
 $ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser 
 $ .venv\Scripts\Activate.ps1
 (.venv) $ python -m pip install django~=4.0.0 psycopg2-binary==2.9.3
-(.venv) $ django-admin startproject django-project .
+(.venv) $ django-admin startproject core-app .
 (.venv) $ python manage.py runserver
 ## Best Practice use Docker for Development
 $ docker compose up -d --build
