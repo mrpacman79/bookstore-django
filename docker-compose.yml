@@ -9,7 +9,10 @@ services:
     ports:
       - 8000:8000 
     depends_on:
-      - db 
+      - db
+    environment:
+      - 'DJANGO_SECRET_KEY= ${DJANGO_SECRET_KEY}'
+      - 'DJANGO_DEBUG= True'
   
   db:
     image: postgres:14.5 
