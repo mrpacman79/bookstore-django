@@ -14,10 +14,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Environment Configuration
-      run: |
-        touch .env
-        echo DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }} > .env
+    - name: Make Environment
+      run: touch .env
+    - name: Get Environment
+      run: echo DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }} > .env && cat .env
     - name: Build the Docker image and container
       run: docker compose up -d --build
     - name: Run test
