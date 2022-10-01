@@ -2,8 +2,6 @@
 
 ## Shortcut Commands
 
-* Project
-
 ```bash
 $ python -m venv .venv
 $ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser 
