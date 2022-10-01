@@ -15,12 +15,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Make Environment
-      uses: SpicyPizza/create-envfile@v1.3
-      with:
-        envkey_DJANGO_SECRET_KEY: ${{ secrets.SECRET_KEY }}
-        directory: <directory_name>
-        file_name: .env
-        fail_on_empty: false
+      run: touch .env
+    - name: Get Environment
+      run: echo DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }} > .env && cat .env
     - name: Build the Docker image and container
       run: docker compose up -d --build
     - name: Run test
