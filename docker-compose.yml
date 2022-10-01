@@ -11,7 +11,7 @@ services:
     depends_on:
       - db
     environment:
-      - DJANGO_SECRET_KEY: '${DJANGO_SECRET_KEY}'
+      - 'DJANGO_SECRET_KEY= ${DJANGO_SECRET_KEY}'
       - DJANGO_DEBUG: 'True'
   
   db:
