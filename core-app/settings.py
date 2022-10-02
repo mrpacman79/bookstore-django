@@ -170,3 +170,8 @@ DEFAULT_FROM_EMAIL = 'admin@bookstoredjango.com'
 # Sign Up use Social media
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 # User none or optional for github
+
+# FILE STORAGE
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
