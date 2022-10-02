@@ -19,4 +19,11 @@ $ docker-compose exec web python manage.py makemigrations accounts
 $ docker-compose exec web python manage.py createsuperuser
 # Run test via docker
 $ docker-compose exec web python manage.py test
+# The best Steps for Dev in docker
+$ docker volume rm books_postgres_data 
+$ docker-compose up -d
+$ docker-compose exec web python manage.py makemigrations books 
+$ docker-compose exec web python manage.py migrate
+$ docker-compose exec web python manage.py createsuperuser
 ```
+
