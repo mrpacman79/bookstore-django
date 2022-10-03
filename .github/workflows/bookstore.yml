@@ -7,10 +7,12 @@ on:
     branches: [ "main" ]
 
 jobs:
+
   CI:
+  
     runs-on: ubuntu-latest
+    
     steps:
-    - name: CHECKOUT REPOSITORY
     - uses: actions/checkout@v3
     
     - name: MAKE ENVIRONMENT
