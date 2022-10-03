@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import socket
 from pathlib import Path
 from environs import Env
 
@@ -45,11 +45,12 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     # Third-party
     'crispy_forms',
-    "crispy_bootstrap5",
+    'crispy_bootstrap5',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
+    'debug_toolbar',
     # Local App
     'accounts.apps.AccountsConfig',
     'pages.apps.PagesConfig',
@@ -65,6 +66,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'core-app.urls'
@@ -92,8 +95,7 @@ WSGI_APPLICATION = 'core-app.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': env.dj_db_url('DATABASE_URL',
-        default='postgres://postgres@db/postgres')
+    'default': env.dj_db_url('DATABASE_URL', default='postgres://postgres@db/postgres')
 }
 
 
@@ -169,9 +171,17 @@ ACCOUNT_UNIQUE_EMAIL = True
 DEFAULT_FROM_EMAIL = 'admin@bookstoredjango.com'
 # Sign Up use Social media
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-# User none or optional for github
+# User none or optional for GitHub
 
 # FILE STORAGE
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# DEBUG TOOLBAR
+hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
+
+# CACHE CONFIG
+CACHE_MIDDLEWARE_ALIAS = 'default'
+CACHE_MIDDLEWARE_SECONDS = 604800
+CACHE_MIDDLEWARE_KEY_PREFIX = ""
