@@ -3,7 +3,8 @@ version: "2.10"
 services:
   web: 
     build: .
-    command: python /code/manage.py runserver 0.0.0.0:8000 
+#    command: gunicorn core-app.wsgi -b 0.0.0.0:8000
+    command: python /code/manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code 
     ports:
@@ -11,8 +12,15 @@ services:
     depends_on:
       - db
     environment:
-      - 'DJANGO_SECRET_KEY= ${DJANGO_SECRET_KEY}'
-      - 'DJANGO_DEBUG= True'
+      - 'DJANGO_PROJECT=DEVELOPMENT'
+      - 'DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}'
+      - "DJANGO_DEBUG=True"
+      - "DJANGO_SECURE_SSL_REDIRECT=False"
+      - "DJANGO_SECURE_HSTS_SECONDS=0"
+      - "DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS=False"
+      - "DJANGO_SECURE_HSTS_PRELOAD=False"
+      - "DJANGO_SESSION_COOKIE_SECURE=False"
+      - "DJANGO_CSRF_COOKIE_SECURE=False"
   
   db:
     image: postgres:14.5 
